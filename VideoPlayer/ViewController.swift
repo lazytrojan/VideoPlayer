@@ -7,19 +7,31 @@
 //
 
 import UIKit
+import Player
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var upperView: UIView!
+    @IBOutlet weak var lowerView: UIView!
+    
+    
+    // http://res.cloudinary.com/staplelogic/video/upload/v1521438940/nas9qxenlzbq8g1igmle.mp4
+    var player1:Player = Player()
+    var player2:Player = Player()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        self.player1.url = URL(string: "http://res.cloudinary.com/staplelogic/video/upload/v1523670796/pt8qhbwke3lqbl712ljk.mp4")
+        self.player1.view.frame = self.upperView.bounds
+        self.upperView.addSubview(self.player1.view)
+        
+        self.player2.url = URL(string: "http://res.cloudinary.com/staplelogic/video/upload/v1523670796/pt8qhbwke3lqbl712ljk.mp4")
+        self.player2.view.frame = self.lowerView.bounds
+        self.lowerView.addSubview(self.player2.view)
+        self.player1.bufferSize = 20.0
+        self.player2.bufferSize = 20.0
+        self.player1.playFromBeginning()
+        self.player2.playFromBeginning()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
